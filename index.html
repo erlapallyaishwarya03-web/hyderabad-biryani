@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#4b1720">
+<meta name="description" content="Hyderabad's Biryani — a mobile-first vintage guide to Hyderabad biryani restaurants, locations, heritage and rankings.">
+<title>Hyderabad's Biryani — Mobile App</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#f5ead2;--paper2:#ead9b7;--paper3:#fff8e8;--maroon:#4b1720;--burgundy:#6a202c;--brown:#2d1d17;--gold:#a97821;--gold2:#c59b4a;--olive:#666044;--muted:#766052;--line:#cdbb93}
+*{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;background:radial-gradient(circle at 20% 20%,rgba(92,63,30,.04) 0 1px,transparent 1.5px),var(--paper);background-size:18px 18px;color:var(--brown);font-family:Inter,Arial,sans-serif;line-height:1.55;padding-bottom:78px} 
+body:after{content:"";position:fixed;inset:0;pointer-events:none;z-index:10;opacity:.08;background:repeating-linear-gradient(0deg,rgba(65,38,21,.12) 0 1px,transparent 1px 4px)}
+h1,h2,h3{font-family:"Cormorant Garamond",Georgia,serif;color:var(--maroon);line-height:1.02;margin:0} button,input,select{font:inherit} a{text-decoration:none;color:inherit}
+.top{height:62px;background:var(--maroon);color:#f6dfac;display:flex;align-items:center;justify-content:space-between;padding:0 18px;position:sticky;top:0;z-index:20;box-shadow:0 3px 12px #3b171b55}
+.brand{font:700 25px "Cormorant Garamond",Georgia,serif} .icon{font-size:23px;color:#f0c96d;background:none;border:0}
+.hero{height:500px;position:relative;overflow:hidden} .hero img{width:100%;height:100%;object-fit:cover;filter:sepia(.35)} .hero:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,#2d0d12aa,#2d0d12d9)}
+.hero-content{position:absolute;inset:0;z-index:2;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;padding:24px;color:#fff2d0} .kicker,.eyebrow{font-size:10px;letter-spacing:2px;text-transform:uppercase;font-weight:800;color:#dcb65f} .hero h1{font-size:58px;color:#fff2d0;margin:14px 0} .hero h1 span{color:#dcb65f} .sub{font:20px "Cormorant Garamond",Georgia,serif;color:#f6e7c3} .gold-btn{margin-top:24px;padding:13px 18px;border:1px solid #d8ae50;background:var(--maroon);color:#ffecc2;border-radius:5px;font-weight:800;letter-spacing:1px;font-size:11px}
+.wrap{padding:18px;max-width:720px;margin:auto} .best{background:#fff7df;border:1px solid var(--line);padding:18px;display:flex;gap:14px;align-items:center;margin:20px 0 32px;box-shadow:0 8px 25px #3a21171f} .badge{width:78px;height:78px;min-width:78px;border-radius:50%;background:var(--maroon);border:3px solid var(--gold);display:flex;align-items:center;justify-content:center;text-align:center;color:#f7df9e;font-weight:800;font:700 13px "Cormorant Garamond",Georgia,serif;line-height:1.05}
+.section{margin:0 0 42px} .section-title{font-size:40px;margin:5px 0 8px} .muted{color:var(--muted);font-size:13px} .intro{color:var(--muted);font-size:13px;margin-bottom:12px}
+.near{width:100%;background:var(--maroon);border:0;border-radius:5px;padding:13px;color:#ffecc2;font-weight:800;font-size:11px;margin:8px 0 16px}
+.search{width:100%;padding:13px;border:1px solid var(--line);background:#fff8e8;border-radius:5px;color:var(--brown);margin:5px 0 10px} .chips{display:flex;gap:7px;overflow:auto;padding:2px 0 10px} .chip{border:1px solid var(--line);background:#efe0c2;border-radius:18px;padding:8px 12px;white-space:nowrap;font-size:11px;font-weight:700} .chip.on{background:var(--maroon);color:#fff0cb;border-color:var(--maroon)} .result{font-size:11px;color:var(--muted);margin-bottom:9px}
+.card{background:var(--paper3);border:1px solid var(--line);margin:0 0 18px;overflow:hidden;box-shadow:0 8px 24px #3a211714} .card-img{height:215px;position:relative;background:#c8b58e} .card-img img{width:100%;height:100%;object-fit:cover} .rank{position:absolute;top:12px;left:12px;width:43px;height:43px;border-radius:50%;background:var(--maroon);border:2px solid var(--gold);color:#f5d889;display:flex;align-items:center;justify-content:center;font:700 22px "Cormorant Garamond",Georgia,serif} .plus{font-size:20px}
+.card-body{padding:17px} .card-body h3{font-size:29px;margin:3px 0} .rating{color:#b37e1d;font-size:13px;font-weight:800;margin:7px 0} .rating span{color:var(--brown);font-weight:700} .price{display:flex;justify-content:space-between;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:9px 0;margin:9px 0 11px;font-size:10px;color:var(--muted);font-weight:800} .price strong{color:var(--maroon);font-size:12px} .card-body p{font-size:12px;color:var(--muted)} .card-body b{color:var(--maroon)} .actions{display:flex;gap:8px;flex-wrap:wrap} .btn{display:inline-block;border-radius:4px;padding:9px 11px;font-size:10px;font-weight:800;letter-spacing:.4px;border:1px solid var(--gold);cursor:pointer} .primary{background:var(--maroon);color:#ffecc2} .light{background:transparent;color:var(--maroon)} .details{display:none;border-top:1px solid var(--line);margin-top:13px;padding-top:10px} .details.show{display:block}
+.story-img{width:100%;height:260px;object-fit:cover;margin:8px 0 13px;filter:sepia(.25)} .story-title{font-size:33px;margin-bottom:6px} .quote{border-left:4px solid var(--gold);padding-left:13px;font:19px "Cormorant Garamond",Georgia,serif;color:var(--maroon);margin-top:14px}
+.gallery{display:grid;grid-template-columns:1fr 1fr;gap:8px} figure{margin:0;background:var(--paper2)} figure img{width:100%;height:150px;object-fit:cover} figcaption{font:600 15px "Cormorant Garamond",Georgia,serif;color:var(--maroon);padding:7px}
+.mapbox{height:220px;background:#c9bd9d;border:7px solid #d6bd83;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;margin-bottom:14px} .mapbox strong{font:700 48px "Cormorant Garamond",Georgia,serif;color:#4834252b} .maprow{display:flex;align-items:center;gap:12px;padding:13px;background:var(--paper3);border-bottom:1px solid var(--line)} .num{width:35px;height:35px;border-radius:50%;background:var(--maroon);color:#f5d889;display:flex;align-items:center;justify-content:center;font-weight:800} .mapname{flex:1;font:700 20px "Cormorant Garamond",Georgia,serif;color:var(--maroon)} .nav{position:fixed;left:0;right:0;bottom:0;height:72px;background:var(--maroon);display:flex;justify-content:space-around;z-index:30;border-top:1px solid #75502e} .nav button{flex:1;border:0;background:none;color:#ead9b7;font-size:11px;font-weight:800} .nav button.active{color:#f0c96d} .nav span{display:block;font-size:21px;margin-bottom:2px}
+.view{display:none} .view.active{display:block} footer{text-align:center;background:var(--maroon);color:#d9c6a4;padding:28px 18px;margin:0 -18px -18px} footer h2{color:#f1cf7b;font-size:34px} footer p{font-size:11px;max-width:600px;margin:7px auto}
+@media(min-width:721px){body{padding-bottom:0} .nav{display:none} .wrap{padding:28px} .hero{height:560px} .hero h1{font-size:78px} .cards{display:grid;grid-template-columns:1fr 1fr;gap:18px} .card{margin:0}}
+</style>
+</head>
+<body>
+<header class="top"><div class="brand">Hyderabad's Biryani</div><button class="icon" onclick="nearMe()" aria-label="Find biryani near me">⌖</button></header>
+
+<section class="hero">
+<img src="https://i.pinimg.com/originals/5f/81/b6/5f81b64d07a670409f601fae45e68019.jpg" alt="Vintage Hyderabad street">
+<div class="hero-content">
+<div class="kicker">AN OLD-CITY FOOD JOURNAL</div>
+<h1>Hyderabad's <span>Biryani</span></h1>
+<div class="sub">A Taste of Hyderabad, One Dum at a Time</div>
+<button class="gold-btn" onclick="showView('trail')">EXPLORE THE TRAIL</button>
+</div></section>
+
+<main class="wrap">
+<div id="home" class="view active">
+<section class="best"><div class="badge">NO. 1<br>BEST<br>PICK</div><div><div class="eyebrow">SECUNDERABAD · MULTIPLE OUTLETS</div><h2 style="font-size:30px;margin:3px 0">Paradise Biryani</h2><p class="muted">The most iconic Hyderabadi biryani brand, serving Nizami-style chicken and mutton since 1953.</p><a class="btn primary" target="_blank" href="https://crispyfriedopinions.com/wp-content/uploads/sites/105/paradise-omr-latest/ParadiseOMR_1a.jpeg">VIEW LOCATION ↗</a></div></section>
+<section class="section"><div class="eyebrow">THE LOCAL LEDGER</div><h2 class="section-title">The Biryani Trail</h2><p class="intro">Six established favourites from the original ranking, plus three additional Hyderabad names worth knowing.</p><button class="near" onclick="nearMe()">⌖ FIND BIRYANI NEAR ME</button><div class="cards">
+    <article class="card" data-name="Paradise Biryani" data-locality="Secunderabad">
+      <div class="card-img"><img src="https://crispyfriedopinions.com/wp-content/uploads/sites/105/paradise-omr-latest/ParadiseOMR_1a.jpeg" alt="Paradise Biryani biryani" loading="lazy"><span class="rank">1</span></div>
+      <div class="card-body">
+        <div class="eyebrow">Secunderabad · Multiple outlets</div>
+        <h3>Paradise Biryani</h3>
+        <div class="rating">★★★★★ <span>4.7/5</span></div>
+        <div class="price"><span>PRICE GUIDE</span><strong>₹300–₹900</strong></div>
+        <p><b>Signature:</b> Nizami-style chicken &amp; mutton dum biryani</p>
+        <p class="muted">The most iconic Hyderabadi biryani brand, serving Nizami-style chicken and mutton since 1953.</p>
+        <div class="actions">
+          <a class="btn primary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Paradise+Biryani+Sarojini+Devi+Road+Secunderabad">VIEW LOCATION ↗</a>
+          <button class="btn light" onclick="toggleDetails(this)">MORE DETAILS</button>
+        </div>
+        <div class="details"><p>Sarojini Devi Road, Sappu Bagh Apartment, Ramgopalpet, Secunderabad 500003.</p><p>Prices vary by branch, season and delivery platform. Approximate 2026 guide.</p></div>
+      </div>
+    </article>
+    <article class="card" data-name="Bawarchi" data-locality="Central Hyderabad">
+      <div class="card-img"><img src="https://assets.zeezest.com/images/PROD_bawarchi_1700228304610_thumb_800.jpeg" alt="Bawarchi biryani" loading="lazy"><span class="rank">2</span></div>
+      <div class="card-body">
+        <div class="eyebrow">RTC X Roads · Chikkadpally</div>
+        <h3>Bawarchi</h3>
+        <div class="rating">★★★★★ <span>4.6/5</span></div>
+        <div class="price"><span>PRICE GUIDE</span><strong>₹100–₹1,500</strong></div>
+        <p><b>Signature:</b> Chicken / mutton dum biryani</p>
+        <p class="muted">A local legend for massive portions at low prices, with a famously unfussy dining experience.</p>
+        <div class="actions">
+          <a class="btn primary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Bawarchi+Plot+44+RTC+X+Road+Hyderabad+500020">VIEW LOCATION ↗</a>
+          <button class="btn light" onclick="toggleDetails(this)">MORE DETAILS</button>
+        </div>
+        <div class="details"><p>Plot No. 44, RTC X Road, beside Sandhya Theatre, Chikkadpally, Hyderabad 500020.</p><p>Prices vary by branch, season and delivery platform. Approximate 2026 guide.</p></div>
+      </div>
+    </article>
+    <article class="card" data-name="Shah Ghouse Hotel &amp; Restaurant" data-locality="West Hyderabad">
+      <div class="card-img"><img src="https://b.zmtcdn.com/data/pictures/chains/0/93970/351d6a8f8209d0b8d6cf3541a2f440f1.jpg?crop=750%3A500%3B%2A%2C%2A&fit=around%7C750%3A500" alt="Shah Ghouse Hotel &amp; Restaurant biryani" loading="lazy"><span class="rank">3</span></div>
+      <div class="card-body">
+        <div class="eyebrow">Toli Chowki · Multiple outlets</div>
+        <h3>Shah Ghouse Hotel &amp; Restaurant</h3>
+        <div class="rating">★★★★★ <span>4.5/5</span></div>
+        <div class="price"><span>PRICE GUIDE</span><strong>₹250–₹860</strong></div>
+        <p><b>Signature:</b> Spicy mutton dum biryani</p>
+        <p class="muted">Rich, spicy chicken and mutton dum biryani with a strong flavour profile and wide reach.</p>
+        <div class="actions">
+          <a class="btn primary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Shah+Ghouse+Hotel+Restaurant+Tolichowki+Hyderabad">VIEW LOCATION ↗</a>
+          <button class="btn light" onclick="toggleDetails(this)">MORE DETAILS</button>
+        </div>
+        <div class="details"><p>Salarjung Colony, Toli Chowki, Hyderabad.</p><p>Prices vary by branch, season and delivery platform. Approximate 2026 guide.</p></div>
+      </div>
+    </article>
+    <article class="card" data-name="Hotel Shadab" data-locality="Old City">
+      <div class="card-img"><img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy%2Cf_auto%2Cq_auto%2Cw_300%2Ch_300%2Ce_grayscale%2Cc_fit/FOOD_CATALOG/IMAGES/CMS/2024/7/20/b54156c5-9d76-421e-9b24-18989c6a6343_5e87d95c-093d-45ae-95d5-2326bf59fac7.jpg" alt="Hotel Shadab biryani" loading="lazy"><span class="rank">4</span></div>
+      <div class="card-body">
+        <div class="eyebrow">Charminar · Ghansi Bazaar</div>
+        <h3>Hotel Shadab</h3>
+        <div class="rating">★★★★★ <span>4.3/5</span></div>
+        <div class="price"><span>PRICE GUIDE</span><strong>₹250–₹750</strong></div>
+        <p><b>Signature:</b> Authentic mutton biryani</p>
+        <p class="muted">An Old City classic with heritage atmosphere, especially associated with mutton biryani.</p>
+        <div class="actions">
+          <a class="btn primary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Hotel+Shadab+Madina+Circle+Hyderabad">VIEW LOCATION ↗</a>
+          <button class="btn light" onclick="toggleDetails(this)">MORE DETAILS</button>
+        </div>
+        <div class="details"><p>High Court Road, near Madina Circle, Ghansi Bazaar, Hyderabad 500002.</p><p>Prices vary by branch, season and delivery platform. Approximate 2026 guide.</p></div>
+      </div>
+    </article>
+    <article class="card" data-name="Cafe Bahar" data-locality="Central Hyderabad">
+      <div class="card-img"><img src="https://cdn.tasteatlas.com/images/restaurants/899c06483f7d4a6883abc75d22c37cca.jpg?w=600" alt="Cafe Bahar biryani" loading="lazy"><span class="rank">5</span></div>
+      <div class="card-body">
+        <div class="eyebrow">Basheer Bagh · Hyderguda</div>
+        <h3>Cafe Bahar</h3>
+        <div class="rating">★★★★★ <span>4.1/5</span></div>
+        <div class="price"><span>PRICE GUIDE</span><strong>₹100–₹400+</strong></div>
+        <p><b>Signature:</b> Hyderabadi meat biryani + haleem</p>
+        <p class="muted">A historic Irani-café-turned-biryani institution since 1973.</p>
+        <div class="actions">
+          <a class="btn primary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Cafe+Bahar+Hyderguda+Basheer+Bagh+Hyderabad">VIEW LOCATION ↗</a>
+          <button class="btn light" onclick="toggleDetails(this)">MORE DETAILS</button>
+        </div>
+        <div class="details"><p>Hyderguda, Basheer Bagh, Hyderabad.</p><p>Prices vary by branch, season and delivery platform. Approximate 2026 guide.</p></div>
+      </div>
+    </article>
+    <article class="card" data-name="Pista House" data-locality="Old City">
+      <div class="card-img"><img src="https://d2oe9m3un01fi.cloudfront.net/backdrop/backdrop_1316_1758964726.webp" alt="Pista House biryani" loading="lazy"><span class="rank">6</span></div>
+      <div class="card-body">
+        <div class="eyebrow">Shalibanda · Multiple outlets</div>
+        <h3>Pista House</h3>
+        <div class="rating">★★★★★ <span>3.9/5</span></div>
+        <div class="price"><span>PRICE GUIDE</span><strong>Mid-range</strong></div>
+        <p><b>Signature:</b> Biryani alongside famous haleem</p>
+        <p class="muted">A solid, reliable biryani option from a brand more famous for its haleem.</p>
+        <div class="actions">
+          <a class="btn primary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Pista+House+Shalibanda+Hyderabad">VIEW LOCATION ↗</a>
+          <button class="btn light" onclick="toggleDetails(this)">MORE DETAILS</button>
+        </div>
+        <div class="details"><p>Shalibanda, opposite Asra Hospital, Hyderabad 500002.</p><p>Prices vary by branch, season and delivery platform. Approximate 2026 guide.</p></div>
+      </div>
+    </article>
+    <article class="card" data-name="Meridian Restaurant" data-locality="Central Hyderabad">
+      <div class="card-img"><img src="https://blog.pavanbhaskar.com/blog/biryani-i-tasted-in-hyderabad/meridian.jpg" alt="Meridian Restaurant biryani" loading="lazy"><span class="rank plus">+</span></div>
+      <div class="card-body">
+        <div class="eyebrow">Punjagutta</div>
+        <h3>Meridian Restaurant</h3>
+        <div class="rating">★★★★★ <span>4.3/5</span></div>
+        <div class="price"><span>PRICE GUIDE</span><strong>₹280–₹935</strong></div>
+        <p><b>Signature:</b> Chicken &amp; mutton dum biryani</p>
+        <p class="muted">A popular Punjagutta stop known for hearty portions and a casual atmosphere.</p>
+        <div class="actions">
+          <a class="btn primary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Meridian+Restaurant+Punjagutta+Hyderabad">VIEW LOCATION ↗</a>
+          <button class="btn light" onclick="toggleDetails(this)">MORE DETAILS</button>
+        </div>
+        <div class="details"><p>Mumbai Highway, Punjagutta, Hyderabad 500082.</p><p>Prices vary by branch, season and delivery platform. Approximate 2026 guide.</p></div>
+      </div>
+    </article>
+    <article class="card" data-name="Hotel Nayaab" data-locality="Old City">
+      <div class="card-img"><img src="https://www.lostwithpurpose.com/wp-content/uploads/2017/01/DSC_6825.jpg" alt="Hotel Nayaab biryani" loading="lazy"><span class="rank plus">+</span></div>
+      <div class="card-body">
+        <div class="eyebrow">Chatta Bazar · Darulshifa</div>
+        <h3>Hotel Nayaab</h3>
+        <div class="rating">★★★★★ <span>4.3/5</span></div>
+        <div class="price"><span>PRICE GUIDE</span><strong>₹189–₹989</strong></div>
+        <p><b>Signature:</b> Hyderabadi chicken / mutton dum biryani</p>
+        <p class="muted">An Old City favourite for biryani, haleem, paya and hearty local food.</p>
+        <div class="actions">
+          <a class="btn primary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Hotel+Nayaab+Chatta+Bazar+Hyderabad">VIEW LOCATION ↗</a>
+          <button class="btn light" onclick="toggleDetails(this)">MORE DETAILS</button>
+        </div>
+        <div class="details"><p>Nayapul Road, Chatta Bazar, Darulshifa, Hyderabad.</p><p>Prices vary by branch, season and delivery platform. Approximate 2026 guide.</p></div>
+      </div>
+    </article>
+    <article class="card" data-name="Cafe 555 &amp; Aqeeq" data-locality="Central Hyderabad">
+      <div class="card-img"><img src="https://imgmediagumlet.lbb.in/media/2024/04/660ba2a5f88c495322e4e0b8_1712038565010.jpg" alt="Cafe 555 &amp; Aqeeq biryani" loading="lazy"><span class="rank plus">+</span></div>
+      <div class="card-body">
+        <div class="eyebrow">Masab Tank · Road No. 1</div>
+        <h3>Cafe 555 &amp; Aqeeq</h3>
+        <div class="rating">★★★★★ <span>4.3/5</span></div>
+        <div class="price"><span>PRICE GUIDE</span><strong>₹120–₹670+</strong></div>
+        <p><b>Signature:</b> Zafrani biryani &amp; mutton biryani</p>
+        <p class="muted">A moderately priced biryani-and-haleem stop with a strong seasonal reputation.</p>
+        <div class="actions">
+          <a class="btn primary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Cafe+555+Aqeeq+Restaurant+Masab+Tank+Hyderabad">VIEW LOCATION ↗</a>
+          <button class="btn light" onclick="toggleDetails(this)">MORE DETAILS</button>
+        </div>
+        <div class="details"><p>Maheshwari Complex, Road No. 1, Masab Tank, Hyderabad 500028.</p><p>Prices vary by branch, season and delivery platform. Approximate 2026 guide.</p></div>
+      </div>
+    </article></div></section>
+</div>
+
+<div id="trail" class="view">
+<section class="section"><div class="eyebrow">DISCOVER & FILTER</div><h2 class="section-title">Biryani Trail</h2>
+<input id="search" class="search" placeholder="Search restaurant, area or biryani..." oninput="filterCards()">
+<div class="chips"><button class="chip on" onclick="setFilter('All',this)">All</button><button class="chip" onclick="setFilter('Old City',this)">Old City</button><button class="chip" onclick="setFilter('Central Hyderabad',this)">Central</button><button class="chip" onclick="setFilter('Secunderabad',this)">Secunderabad</button><button class="chip" onclick="setFilter('West Hyderabad',this)">West</button></div>
+<div id="result" class="result">9 trail stops</div><div id="trailCards" class="cards">
+    <article class="card" data-name="Paradise Biryani" data-locality="Secunderabad">
+      <div class="card-img"><img src="https://crispyfriedopinions.com/wp-content/uploads/sites/105/paradise-omr-latest/ParadiseOMR_1a.jpeg" alt="Paradise Biryani biryani" loading="lazy"><span class="rank">1</span></div>
+      <div class="card-body">
+        <div class="eyebrow">Secunderabad · Multiple outlets</div>
+        <h3>Paradise Biryani</h3>
+        <div class="rating">★★★★★ <span>4.7/5</span></div>
+        <div class="price"><span>PRICE GUIDE</span><strong>₹300–₹900</strong></div>
+        <p><b>Signature:</b> Nizami-style chicken &amp; mutton dum biryani</p>
+        <p class="muted">The most iconic Hyderabadi biryani brand, serving Nizami-style chicken and mutton since 1953.</p>
+        <div class="actions">
+          <a class="btn primary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Paradise+Biryani+Sarojini+Devi+Road+Secunderabad">VIEW LOCATION ↗</a>
+          <button class="btn light" onclick="toggleDetails(this)">MORE DETAILS</button>
+        </div>
+        <div class="details"><p>Sarojini Devi Road, Sappu Bagh Apartment, Ramgopalpet, Secunderabad 500003.</p><p>Prices vary by branch, season and delivery platform. Approximate 2026 guide.</p></div>
+      </div>
+    </article>
+    <article class="card" data-name="Bawarchi" data-locality="Central Hyderabad">
+      <div class="card-img"><img src="https://assets.zeezest.com/images/PROD_bawarchi_1700228304610_thumb_800.jpeg" alt="Bawarchi biryani" loading="lazy"><span class="rank">2</span></div>
+      <div class="card-body">
+        <div class="eyebrow">RTC X Roads · Chikkadpally</div>
+        <h3>Bawarchi</h3>
+        <div class="rating">★★★★★ <span>4.6/5</span></div>
+        <div class="price"><span>PRICE GUIDE</span><strong>₹100–₹1,500</strong></div>
+        <p><b>Signature:</b> Chicken / mutton dum biryani</p>
+        <p class="muted">A local legend for massive portions at low prices, with a famously unfussy dining experience.</p>
+        <div class="actions">
+          <a class="btn primary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Bawarchi+Plot+44+RTC+X+Road+Hyderabad+500020">VIEW LOCATION ↗</a>
+          <button class="btn light" onclick="toggleDetails(this)">MORE DETAILS</button>
+        </div>
+        <div class="details"><p>Plot No. 44, RTC X Road, beside Sandhya Theatre, Chikkadpally, Hyderabad 500020.</p><p>Prices vary by branch, season and delivery platform. Approximate 2026 guide.</p></div>
+      </div>
+    </article>
+    <article class="card" data-name="Shah Ghouse Hotel &amp; Restaurant" data-locality="West Hyderabad">
+      <div class="card-img"><img src="https://b.zmtcdn.com/data/pictures/chains/0/93970/351d6a8f8209d0b8d6cf3541a2f440f1.jpg?crop=750%3A500%3B%2A%2C%2A&fit=around%7C750%3A500" alt="Shah Ghouse Hotel &amp; Restaurant biryani" loading="lazy"><span class="rank">3</span></div>
+      <div class="card-body">
+        <div class="eyebrow">Toli Chowki · Multiple outlets</div>
+        <h3>Shah Ghouse Hotel &amp; Restaurant</h3>
+        <div class="rating">★★★★★ <span>4.5/5</span></div>
+        <div class="price"><span>PRICE GUIDE</span><strong>₹250–₹860</strong></div>
+        <p><b>Signature:</b> Spicy mutton dum biryani</p>
+        <p class="muted">Rich, spicy chicken and mutton dum biryani with a strong flavour profile and wide reach.</p>
+        <div class="actions">
+          <a class="btn primary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Shah+Ghouse+Hotel+Restaurant+Tolichowki+Hyderabad">VIEW LOCATION ↗</a>
+          <button class="btn light" onclick="toggleDetails(this)">MORE DETAILS</button>
+        </div>
+        <div class="details"><p>Salarjung Colony, Toli Chowki, Hyderabad.</p><p>Prices vary by branch, season and delivery platform. Approximate 2026 guide.</p></div>
+      </div>
+    </article>
+    <article class="card" data-name="Hotel Shadab" data-locality="Old City">
+      <div class="card-img"><img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy%2Cf_auto%2Cq_auto%2Cw_300%2Ch_300%2Ce_grayscale%2Cc_fit/FOOD_CATALOG/IMAGES/CMS/2024/7/20/b54156c5-9d76-421e-9b24-18989c6a6343_5e87d95c-093d-45ae-95d5-2326bf59fac7.jpg" alt="Hotel Shadab biryani" loading="lazy"><span class="rank">4</span></div>
+      <div class="card-body">
+        <div class="eyebrow">Charminar · Ghansi Bazaar</div>
+        <h3>Hotel Shadab</h3>
+        <div class="rating">★★★★★ <span>4.3/5</span></div>
+        <div class="price"><span>PRICE GUIDE</span><strong>₹250–₹750</strong></div>
+        <p><b>Signature:</b> Authentic mutton biryani</p>
+        <p class="muted">An Old City classic with heritage atmosphere, especially associated with mutton biryani.</p>
+        <div class="actions">
+          <a class="btn primary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Hotel+Shadab+Madina+Circle+Hyderabad">VIEW LOCATION ↗</a>
+          <button class="btn light" onclick="toggleDetails(this)">MORE DETAILS</button>
+        </div>
+        <div class="details"><p>High Court Road, near Madina Circle, Ghansi Bazaar, Hyderabad 500002.</p><p>Prices vary by branch, season and delivery platform. Approximate 2026 guide.</p></div>
+      </div>
+    </article>
+    <article class="card" data-name="Cafe Bahar" data-locality="Central Hyderabad">
+      <div class="card-img"><img src="https://cdn.tasteatlas.com/images/restaurants/899c06483f7d4a6883abc75d22c37cca.jpg?w=600" alt="Cafe Bahar biryani" loading="lazy"><span class="rank">5</span></div>
+      <div class="card-body">
+        <div class="eyebrow">Basheer Bagh · Hyderguda</div>
+        <h3>Cafe Bahar</h3>
+        <div class="rating">★★★★★ <span>4.1/5</span></div>
+        <div class="price"><span>PRICE GUIDE</span><strong>₹100–₹400+</strong></div>
+        <p><b>Signature:</b> Hyderabadi meat biryani + haleem</p>
+        <p class="muted">A historic Irani-café-turned-biryani institution since 1973.</p>
+        <div class="actions">
+          <a class="btn primary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Cafe+Bahar+Hyderguda+Basheer+Bagh+Hyderabad">VIEW LOCATION ↗</a>
+          <button class="btn light" onclick="toggleDetails(this)">MORE DETAILS</button>
+        </div>
+        <div class="details"><p>Hyderguda, Basheer Bagh, Hyderabad.</p><p>Prices vary by branch, season and delivery platform. Approximate 2026 guide.</p></div>
+      </div>
+    </article>
+    <article class="card" data-name="Pista House" data-locality="Old City">
+      <div class="card-img"><img src="https://d2oe9m3un01fi.cloudfront.net/backdrop/backdrop_1316_1758964726.webp" alt="Pista House biryani" loading="lazy"><span class="rank">6</span></div>
+      <div class="card-body">
+        <div class="eyebrow">Shalibanda · Multiple outlets</div>
+        <h3>Pista House</h3>
+        <div class="rating">★★★★★ <span>3.9/5</span></div>
+        <div class="price"><span>PRICE GUIDE</span><strong>Mid-range</strong></div>
+        <p><b>Signature:</b> Biryani alongside famous haleem</p>
+        <p class="muted">A solid, reliable biryani option from a brand more famous for its haleem.</p>
+        <div class="actions">
+          <a class="btn primary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Pista+House+Shalibanda+Hyderabad">VIEW LOCATION ↗</a>
+          <button class="btn light" onclick="toggleDetails(this)">MORE DETAILS</button>
+        </div>
+        <div class="details"><p>Shalibanda, opposite Asra Hospital, Hyderabad 500002.</p><p>Prices vary by branch, season and delivery platform. Approximate 2026 guide.</p></div>
+      </div>
+    </article>
+    <article class="card" data-name="Meridian Restaurant" data-locality="Central Hyderabad">
+      <div class="card-img"><img src="https://blog.pavanbhaskar.com/blog/biryani-i-tasted-in-hyderabad/meridian.jpg" alt="Meridian Restaurant biryani" loading="lazy"><span class="rank plus">+</span></div>
+      <div class="card-body">
+        <div class="eyebrow">Punjagutta</div>
+        <h3>Meridian Restaurant</h3>
+        <div class="rating">★★★★★ <span>4.3/5</span></div>
+        <div class="price"><span>PRICE GUIDE</span><strong>₹280–₹935</strong></div>
+        <p><b>Signature:</b> Chicken &amp; mutton dum biryani</p>
+        <p class="muted">A popular Punjagutta stop known for hearty portions and a casual atmosphere.</p>
+        <div class="actions">
+          <a class="btn primary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Meridian+Restaurant+Punjagutta+Hyderabad">VIEW LOCATION ↗</a>
+          <button class="btn light" onclick="toggleDetails(this)">MORE DETAILS</button>
+        </div>
+        <div class="details"><p>Mumbai Highway, Punjagutta, Hyderabad 500082.</p><p>Prices vary by branch, season and delivery platform. Approximate 2026 guide.</p></div>
+      </div>
+    </article>
+    <article class="card" data-name="Hotel Nayaab" data-locality="Old City">
+      <div class="card-img"><img src="https://www.lostwithpurpose.com/wp-content/uploads/2017/01/DSC_6825.jpg" alt="Hotel Nayaab biryani" loading="lazy"><span class="rank plus">+</span></div>
+      <div class="card-body">
+        <div class="eyebrow">Chatta Bazar · Darulshifa</div>
+        <h3>Hotel Nayaab</h3>
+        <div class="rating">★★★★★ <span>4.3/5</span></div>
+        <div class="price"><span>PRICE GUIDE</span><strong>₹189–₹989</strong></div>
+        <p><b>Signature:</b> Hyderabadi chicken / mutton dum biryani</p>
+        <p class="muted">An Old City favourite for biryani, haleem, paya and hearty local food.</p>
+        <div class="actions">
+          <a class="btn primary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Hotel+Nayaab+Chatta+Bazar+Hyderabad">VIEW LOCATION ↗</a>
+          <button class="btn light" onclick="toggleDetails(this)">MORE DETAILS</button>
+        </div>
+        <div class="details"><p>Nayapul Road, Chatta Bazar, Darulshifa, Hyderabad.</p><p>Prices vary by branch, season and delivery platform. Approximate 2026 guide.</p></div>
+      </div>
+    </article>
+    <article class="card" data-name="Cafe 555 &amp; Aqeeq" data-locality="Central Hyderabad">
+      <div class="card-img"><img src="https://imgmediagumlet.lbb.in/media/2024/04/660ba2a5f88c495322e4e0b8_1712038565010.jpg" alt="Cafe 555 &amp; Aqeeq biryani" loading="lazy"><span class="rank plus">+</span></div>
+      <div class="card-body">
+        <div class="eyebrow">Masab Tank · Road No. 1</div>
+        <h3>Cafe 555 &amp; Aqeeq</h3>
+        <div class="rating">★★★★★ <span>4.3/5</span></div>
+        <div class="price"><span>PRICE GUIDE</span><strong>₹120–₹670+</strong></div>
+        <p><b>Signature:</b> Zafrani biryani &amp; mutton biryani</p>
+        <p class="muted">A moderately priced biryani-and-haleem stop with a strong seasonal reputation.</p>
+        <div class="actions">
+          <a class="btn primary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Cafe+555+Aqeeq+Restaurant+Masab+Tank+Hyderabad">VIEW LOCATION ↗</a>
+          <button class="btn light" onclick="toggleDetails(this)">MORE DETAILS</button>
+        </div>
+        <div class="details"><p>Maheshwari Complex, Road No. 1, Masab Tank, Hyderabad 500028.</p><p>Prices vary by branch, season and delivery platform. Approximate 2026 guide.</p></div>
+      </div>
+    </article></div></section>
+</div>
+
+<div id="map" class="view"><section class="section"><div class="eyebrow">MAP & DIRECTIONS</div><h2 class="section-title">Biryani Trail Map</h2><div class="mapbox"><strong>HYDERABAD</strong><span class="muted">Open a stop for live Google Maps navigation.</span></div>
+<a class="maprow" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Paradise+Biryani+Sarojini+Devi+Road+Secunderabad"><div class="num">1</div><div class="mapname">Paradise Biryani<div class="eyebrow">Secunderabad · Multiple outlets</div></div><span style="color:#a97821;font-size:22px">⌖</span></a><a class="maprow" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Bawarchi+Plot+44+RTC+X+Road+Hyderabad+500020"><div class="num">2</div><div class="mapname">Bawarchi<div class="eyebrow">RTC X Roads · Chikkadpally</div></div><span style="color:#a97821;font-size:22px">⌖</span></a><a class="maprow" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Shah+Ghouse+Hotel+Restaurant+Tolichowki+Hyderabad"><div class="num">3</div><div class="mapname">Shah Ghouse Hotel &amp; Restaurant<div class="eyebrow">Toli Chowki · Multiple outlets</div></div><span style="color:#a97821;font-size:22px">⌖</span></a><a class="maprow" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Hotel+Shadab+Madina+Circle+Hyderabad"><div class="num">4</div><div class="mapname">Hotel Shadab<div class="eyebrow">Charminar · Ghansi Bazaar</div></div><span style="color:#a97821;font-size:22px">⌖</span></a><a class="maprow" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Cafe+Bahar+Hyderguda+Basheer+Bagh+Hyderabad"><div class="num">5</div><div class="mapname">Cafe Bahar<div class="eyebrow">Basheer Bagh · Hyderguda</div></div><span style="color:#a97821;font-size:22px">⌖</span></a><a class="maprow" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Pista+House+Shalibanda+Hyderabad"><div class="num">6</div><div class="mapname">Pista House<div class="eyebrow">Shalibanda · Multiple outlets</div></div><span style="color:#a97821;font-size:22px">⌖</span></a><a class="maprow" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Meridian+Restaurant+Punjagutta+Hyderabad"><div class="num">+</div><div class="mapname">Meridian Restaurant<div class="eyebrow">Punjagutta</div></div><span style="color:#a97821;font-size:22px">⌖</span></a><a class="maprow" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Hotel+Nayaab+Chatta+Bazar+Hyderabad"><div class="num">+</div><div class="mapname">Hotel Nayaab<div class="eyebrow">Chatta Bazar · Darulshifa</div></div><span style="color:#a97821;font-size:22px">⌖</span></a><a class="maprow" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Cafe+555+Aqeeq+Restaurant+Masab+Tank+Hyderabad"><div class="num">+</div><div class="mapname">Cafe 555 &amp; Aqeeq<div class="eyebrow">Masab Tank · Road No. 1</div></div><span style="color:#a97821;font-size:22px">⌖</span></a>
+</section></div>
+
+<div id="more" class="view">
+<section class="section"><div class="eyebrow">THE ORIGINAL SIX-WAY VERDICT</div><h2 class="section-title">How the Trail Ranks</h2><p class="muted">Scores use authenticity, value for money, consistency across branches and popularity/reputation.</p>
+<div class="maprow"><div class="num">1</div><div class="mapname">Paradise Biryani</div><strong>4.7</strong></div><div class="maprow"><div class="num">2</div><div class="mapname">Bawarchi</div><strong>4.6</strong></div><div class="maprow"><div class="num">3</div><div class="mapname">Shah Ghouse</div><strong>4.5</strong></div><div class="maprow"><div class="num">4</div><div class="mapname">Hotel Shadab</div><strong>4.3</strong></div><div class="maprow"><div class="num">5</div><div class="mapname">Cafe Bahar</div><strong>4.1</strong></div><div class="maprow"><div class="num">6</div><div class="mapname">Pista House</div><strong>3.9</strong></div>
+<div style="background:var(--maroon);padding:18px;margin-top:18px;color:#f4e2bc"><h3 style="color:#e4bb60;font-size:26px">Whose “best” is this?</h3><p style="font-size:12px">Hyderabad's biryani culture runs on strong personal loyalties. The best depends on whether you prioritise authenticity, spice, value or nostalgia.</p></div>
+</section>
+<section class="section"><div class="eyebrow">FROM COURTLY KITCHENS TO CITY STREETS</div><h2 class="section-title">The Story Behind the Plate</h2><img class="story-img" src="https://dome.mit.edu/bitstream/handle/1721.3/21797/112152_cp.jpg?isAllowed=y&sequence=1" alt="Historic Hyderabad architecture"><h3 class="story-title">A city cooked in layers.</h3><p class="muted">Hyderabad's biryani belongs to a larger Deccan food culture shaped by courtly traditions, Persianate influences, local ingredients and generations of cooks.</p><p class="quote">“Dum is not just a cooking method — it is part of the patience and theatre of the dish.”</p></section>
+<section class="section"><div class="eyebrow">SMOKE, STONE & STREET LIFE</div><h2 class="section-title">The Taste of Hyderabad</h2><div class="gallery"><figure><img src="https://i.pinimg.com/originals/5f/81/b6/5f81b64d07a670409f601fae45e68019.jpg" alt="Old Charminar streets" loading="lazy"><figcaption>Old Charminar streets</figcaption></figure><figure><img src="https://crispyfriedopinions.com/wp-content/uploads/sites/105/paradise-omr-latest/ParadiseOMR_1a.jpeg" alt="Dum, rice &amp; accompaniments" loading="lazy"><figcaption>Dum, rice &amp; accompaniments</figcaption></figure><figure><img src="https://www.lostwithpurpose.com/wp-content/uploads/2017/01/DSC_6825.jpg" alt="Old City after dark" loading="lazy"><figcaption>Old City after dark</figcaption></figure><figure><img src="https://media.assettype.com/thenewsminute%2Fimport%2Fsites%2Fall%2Fvar%2Fwww%2Fimages%2FWhatsApp_Image_2019-10-31_at_17_15_10_%282%29.jpeg" alt="Haleem season" loading="lazy"><figcaption>Haleem season</figcaption></figure><figure><img src="https://imgmediagumlet.lbb.in/media/2024/04/660ba2a5f88c495322e4e0b8_1712038565010.jpg" alt="Slow-cooked comfort" loading="lazy"><figcaption>Slow-cooked comfort</figcaption></figure><figure><img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy%2Cf_auto%2Cq_auto%2Cw_300%2Ch_300%2Ce_grayscale%2Cc_fit/FOOD_CATALOG/IMAGES/CMS/2024/7/20/b54156c5-9d76-421e-9b24-18989c6a6343_5e87d95c-093d-45ae-95d5-2326bf59fac7.jpg" alt="Raita, salan, mint" loading="lazy"><figcaption>Raita, salan, mint</figcaption></figure></div></section>
+<footer><h2>Hyderabad's Biryani</h2><p>Restaurant locations and guide information were prepared for this mobile-first experience. Prices are approximate and can change.</p><p>Images are loaded from their original web sources and may change availability or licensing status.</p></footer>
+</div>
+</main>
+
+<nav class="nav">
+<button class="active" data-view="home" onclick="showView('home')"><span>⌂</span>Home</button>
+<button data-view="trail" onclick="showView('trail')"><span>🍽</span>Trail</button>
+<button data-view="map" onclick="showView('map')"><span>⌖</span>Map</button>
+<button data-view="more" onclick="showView('more')"><span>☷</span>More</button>
+</nav>
+
+<script>
+let currentFilter='All';
+function showView(id){
+ document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+ document.getElementById(id).classList.add('active');
+ document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.view===id));
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+function toggleDetails(btn){const d=btn.parentElement.nextElementSibling; d.classList.toggle('show'); btn.textContent=d.classList.contains('show')?'HIDE DETAILS':'MORE DETAILS';}
+function setFilter(f,btn){currentFilter=f;document.querySelectorAll('.chip').forEach(c=>c.classList.remove('on'));btn.classList.add('on');filterCards();}
+function filterCards(){
+ const q=(document.getElementById('search')?.value||'').toLowerCase();
+ const cards=[...document.querySelectorAll('#trailCards .card')];
+ let count=0;
+ cards.forEach(c=>{const text=c.innerText.toLowerCase();const ok=(currentFilter==='All'||c.dataset.locality===currentFilter)&&text.includes(q);c.style.display=ok?'block':'none';if(ok)count++;});
+ document.getElementById('result').textContent=count+' trail stop'+(count===1?'':'s');
+}
+function nearMe(){
+ if(navigator.geolocation) navigator.geolocation.getCurrentPosition(()=>window.open('https://www.google.com/maps/search/?api=1&query=biryani+restaurants+near+me','_blank'),()=>window.open('https://www.google.com/maps/search/?api=1&query=biryani+restaurants+Hyderabad','_blank'));
+ else window.open('https://www.google.com/maps/search/?api=1&query=biryani+restaurants+Hyderabad','_blank');
+}
+</script>
+</body>
+</html>
